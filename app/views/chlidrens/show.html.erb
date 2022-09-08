@@ -1,0 +1,57 @@
+<p id="notice"><%= notice %></p>
+
+<div class="jumbotron">
+  <h1 class="display-5">
+     name:  <%= @chlidren.name %>
+       <hr style="width:50%">  
+    class: <%= @chlidren.child_class %>
+     <hr style="width:50%"> 
+    roll number: <%= @chlidren.child_roll_no %>
+
+  </h1>
+    <hr style="height:2px;border-width:0;color:gray;background-color:gray">  
+  <p class="lead">
+
+    <%= form_with(url:  bulk_result_delete_chlidren_path(@chlidren),html: { method: :delete}, data:{confirm: "are you sure"}) do |form| %>
+    <%= form.submit "bulk delete", class: 'btn btn-outline-danger' %>
+    <table class="table table-striped ">
+      <thead class="thead-dark">
+      <tr>
+        <th><h3>select:</h3></th>
+        <th>
+          <h4><strong>subject</strong></h4>
+        </th>
+        <th>
+          <h4><strong>score</strong></h4> 
+        </th>
+        <th>
+          
+        </th>
+      </tr>
+      </thead>
+      <tbody>
+        <% @results.each do |result| %>
+        <tr>
+          <td><%= form.check_box "result_id[]",{}, result.id, '' %></td>
+          <td>
+           <h4><%= result.subject %></h4> 
+          </td>
+          <td>
+            <h4><%= result.score %></h4>
+          </td>
+          <td>
+            <%= link_to 'delete', result_delete_chlidren_path(@chlidren, result_id: result.id), method: :delete, data:{confirm: "are you sure"}, class: 'btn btn-outline-danger' %>
+          </td>
+        </tr>
+        <%end%>
+      </tbody>
+    </table>
+    <%end%>
+    
+  </p>
+  <p class="lead">
+    <%= link_to 'Edit', edit_chlidren_path(@chlidren), class: 'btn btn-secondary' %>
+    <%= link_to 'Back', chlidrens_path, class: 'btn btn-primary' %>
+  </p>
+</div>
+

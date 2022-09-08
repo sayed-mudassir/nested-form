@@ -1,0 +1,33 @@
+  <h1>info</h1>
+<%= link_to 'Back', projects_path, class: 'btn btn-outline-primary' %>
+<p>
+  <h3><strong><%= @project.name %></strong></h3>
+</p>
+<p>
+  <h3><strong><%= @project.description %></strong></h3>
+</p>
+<%#= form_with(url:  bulk_task_delete_project_path(@project),html: { method: :delete}, data:{confirm: "are you sure"}) do |form| %>
+<%#= form.submit "bulk delete", class: 'btn btn-outline-danger' %>
+<%= form_with(url:  bulk_task_delete_project_path(@project)) do |form| %>
+    <%= form.submit "add to cart", class: 'btn btn-secondary' %>
+<table class="table">
+  <thead>
+    <th></th>
+    <th><strong>description:</strong></th>
+    <th><strong>actions:</strong></th>
+  </thead>
+  <tbody>
+    <% @tasks.each do |task| %>
+    <tr>
+      <td><%= form.check_box "task_id[]",{}, task.id, '' %></td>
+      <td><h4><%= task.description %></h4></td>
+      <td><%#= link_to 'delete',  task_delete_project_path(@project, task_id: task.id),method: :delete, data:{confirm: "are you sure"}, class: 'btn btn-outline-danger' %>
+        <% if @project.user == current_user %>
+        <%= link_to 'Edit', edit_project_path(@project), class: 'btn btn-outline-secondary' %> 
+        <%end%>
+        </td>
+    </tr>
+    <%end%>
+  </tbody>
+</table>
+<%end%>

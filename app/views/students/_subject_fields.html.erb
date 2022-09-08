@@ -1,0 +1,13 @@
+<div class="nested-fields">
+	<div class="field">	
+    <%= f.label :subject_name%>
+    %br
+    <%= f.text_field :subject_name%>
+	</div>
+	<div class="field">	
+    <%= f.label :marks%>
+    %br
+    <%= f.text_field :marks%>
+	</div>
+  <%= link_to_remove_association "remove subject", f %>
+</div>

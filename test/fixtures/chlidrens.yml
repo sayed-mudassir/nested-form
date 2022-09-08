@@ -1,0 +1,11 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: MyString
+  child_class: MyString
+  child_roll_no: MyString
+
+two:
+  name: MyString
+  child_class: MyString
+  child_roll_no: MyString

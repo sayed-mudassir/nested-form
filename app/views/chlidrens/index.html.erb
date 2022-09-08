@@ -1,0 +1,33 @@
+<p id="notice"><%= notice %></p>
+<h1>student</h1>
+<%=form_with(url: bulk_delete_chlidrens_url ,method: :delete, data: {confirm: "are you sure"}) do |form|%>
+<%= form.submit "bulk delete" , class: 'btn btn-outline-danger' %>
+<table class="table table-striped">
+  <thead class="thead-dark">
+    <tr>
+      <th>select</th>
+      <th>Name</th>
+      <th>Child class</th>
+      <th>Child roll no</th>
+      <th>actions</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @chlidrens.each do |chlidren| %>
+      <tr>
+        <td><%= form.check_box "chlidren_id[]",{}, chlidren.id, '' %></td>
+        <td><%= chlidren.name %></td>
+        <td><%= chlidren.child_class %></td>
+        <td><%= chlidren.child_roll_no %>
+        <td><%= link_to 'Show', chlidren, class: 'btn btn-secondary' %>
+        <%= link_to 'Edit', edit_chlidren_path(chlidren), class: 'btn btn-secondary' %>
+        <%= link_to 'Destroy', chlidren, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger' %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+<%end%>
+<br>
+
+<%= link_to 'New Chlidren', new_chlidren_path, class: 'btn btn-primary' %>

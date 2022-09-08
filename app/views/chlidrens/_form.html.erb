@@ -1,0 +1,45 @@
+<%= form_with(model: chlidren) do |form| %>
+  <% if chlidren.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(chlidren.errors.count, "error") %> prohibited this chlidren from being saved:</h2>
+
+      <ul>
+        <% chlidren.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :name %>
+    <%= form.text_field :name, class: 'form-control', placeholder: 'student name' %>
+  </div>
+
+  <div class="field">
+    <%= form.label :student_class %>
+    <%= form.text_field :child_class, class: 'form-control', placeholder: 'student class' %>
+  </div>
+
+  <div class="field">
+    <%= form.label :student_roll_no %>
+    <%= form.text_field :child_roll_no, class: 'form-control', placeholder: 'student roll number' %>
+  </div>
+
+  
+  
+
+  <div>
+   <%= form.fields_for :results do |result|%>
+      <%= render 'result_fields', f: result%> 
+      <%end%>
+  </div>
+
+  <div class="link">
+      <%= link_to_add_association 'add', form, :results, class: 'btn btn-secondary' %> <br><br>
+  </div>
+
+  <div class="actions">
+    <%= form.submit class: 'btn btn-primary' %>
+  </div>
+<% end %>

@@ -1,0 +1,12 @@
+<div>
+	<div class="nested-fields">
+		<div>
+		<%= f.label :subject %>
+		<%= f.text_field :subject, class: 'form-control', placeholder: 'subject name' %>
+		<br>
+		<%= f.label :score %>
+		<%= f.text_field :score, class: 'form-control', placeholder: 'subject score' %><hr>
+		
+	</div>
+	<%= link_to_remove_association "remove result", f, class: 'btn btn-outline-danger' %><hr>	
+</div>

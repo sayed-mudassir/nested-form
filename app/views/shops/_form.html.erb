@@ -1,0 +1,37 @@
+<%= form_with(model: shop) do |form| %>
+  <% if shop.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(shop.errors.count, "error") %> prohibited this shop from being saved:</h2>
+
+      <ul>
+        <% shop.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :product_name %>
+    <%= form.text_field :product_name %>
+  </div>
+
+  <div class="field">
+    <%= form.label :price %>
+    <%= form.text_field :price %>
+  </div>
+  
+  <div>
+   <%= form.fields_for :item do |item|%>
+      <%= render 'item_fields', f: item %> 
+      <%end%>
+  </div>
+
+  <div class="link">
+      <%= link_to_add_association 'add', form, :items, class: 'btn btn-secondary' %> <br><br>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>
